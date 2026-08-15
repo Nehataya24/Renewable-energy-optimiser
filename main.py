@@ -9,13 +9,42 @@ app = FastAPI()
 BROKER = "broker.hivemq.com"
 PORT = 1883
 TOPIC = "renewable_energy_optimizer/neha/sensors"
+def calculate_flap_angles(wind_speed):
+    if wind_speed < 3:
+        return {
+            "flap_1_angle": 0,
+            "flap_2_angle": 0,
+            "flap_3_angle": 0
+        }
 
+    elif wind_speed < 6:
+        return {
+            "flap_1_angle": 10,
+            "flap_2_angle": 15,
+            "flap_3_angle": 20
+        }
+
+    elif wind_speed < 10:
+        return {
+            "flap_1_angle": 20,
+            "flap_2_angle": 25,
+            "flap_3_angle": 30
+        }
+
+    else:
+        return {
+            "flap_1_angle": 30,
+            "flap_2_angle": 35,
+            "flap_3_angle": 40
+        }
 
 def optimize_energy(data):
     wind_speed = data.get("wind_speed", 0)
     generated_power = data.get("generated_power", 0)
     battery_level = data.get("battery_level", 0)
     temperature = data.get("temperature", 0)
+
+    flap_angles = calculate_flap_angles(wind_speed)
 
     if generated_power <= 0:
         load_status = "OFF"
@@ -45,6 +74,10 @@ def optimize_energy(data):
         "efficiency": efficiency,
         "recommendation": recommendation,
         "load_status": load_status
+
+        "flap_1_angle": flap_angles["flap_1_angle"],
+        "flap_2_angle": flap_angles["flap_2_angle"],
+        "flap_3_angle": flap_angles["flap_3_angle"]
     }
 
 
