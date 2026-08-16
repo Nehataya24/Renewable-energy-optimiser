@@ -1,4 +1,8 @@
+__pycache__/
+*.pyc
 venv/
-_pycache_/
 .DS_Store
-*._pyc
+*.save
+energy_data.db
+main_backup.py
+main_before_database.py

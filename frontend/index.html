@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Wind Energy Optimizer</title>
+
+    <link
+        rel="stylesheet"
+        href="/frontend/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header>
+
+        <h1>
+            🌬️ Wind Energy Optimizer
+        </h1>
+
+        <p>
+            Smart Wind Energy Monitoring & Optimization System
+        </p>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =================================================
+             CURRENT ENERGY STATUS
+        ================================================== -->
+
+        <section class="dashboard">
+
+
+            <div class="card">
+
+                <h3>
+                    Wind Speed
+                </h3>
+
+                <p id="windSpeed">
+                    -- m/s
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Generated Power
+                </h3>
+
+                <p id="generatedPower">
+                    -- W
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Battery Level
+                </h3>
+
+                <p id="batteryLevel">
+                    -- %
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Temperature
+                </h3>
+
+                <p id="temperature">
+                    -- °C
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Efficiency
+                </h3>
+
+                <p id="efficiency">
+                    -- %
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Load Status
+                </h3>
+
+                <p id="loadStatus">
+                    --
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FLAP ANGLE OPTIMIZATION
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <h2>
+                Flap Angle Optimization
+            </h2>
+
+
+            <div class="flaps">
+
+
+                <div>
+
+                    <h3>
+                        Flap 1
+                    </h3>
+
+                    <p id="flap1">
+                        --°
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Flap 2
+                    </h3>
+
+                    <p id="flap2">
+                        --°
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Flap 3
+                    </h3>
+
+                    <p id="flap3">
+                        --°
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             OPTIMIZATION RECOMMENDATION
+        ================================================== -->
+
+        <section class="recommendation">
+
+
+            <h2>
+                💡 Optimization Recommendation
+            </h2>
+
+
+            <p id="recommendation">
+                Waiting for energy data...
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             SMART SYSTEM ALERTS
+        ================================================== -->
+
+        <section class="alerts">
+
+
+            <h2>
+                🚨 Smart System Alerts
+            </h2>
+
+
+            <p id="systemAlert">
+                ✅ System operating normally.
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI POWER PREDICTION
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <h2>
+                🤖 AI Power Prediction
+            </h2>
+
+
+            <div class="ai-card">
+
+
+                <h3>
+                    Predicted Generated Power
+                </h3>
+
+
+                <p id="predictedPower">
+                    Loading AI prediction...
+                </p>
+
+
+                <p>
+                    Based on current wind speed,
+                    temperature and battery level.
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI MODEL PERFORMANCE
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <h2>
+                📊 AI Model Performance
+            </h2>
+
+
+            <div class="dashboard">
+
+
+                <div class="card">
+
+                    <h3>
+                        AI Model
+                    </h3>
+
+                    <p id="aiModel">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Training Samples
+                    </h3>
+
+                    <p id="trainingSamples">
+                        --
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Test Samples
+                    </h3>
+
+                    <p id="testSamples">
+                        --
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Mean Absolute Error
+                    </h3>
+
+                    <p id="mae">
+                        -- W
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        R² Score
+                    </h3>
+
+                    <p id="r2Score">
+                        --
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             HISTORICAL ENERGY GRAPH
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <h2>
+                📈 Energy Performance History
+            </h2>
+
+
+            <div class="chart-container">
+
+                <canvas id="energyChart"></canvas>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             REFRESH BUTTON
+        ================================================== -->
+
+        <section class="controls">
+
+
+            <button onclick="loadLatestData()">
+
+                🔄 Refresh Data
+
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        <p>
+
+            Wind Energy Optimizer |
+
+            FastAPI + MQTT + SQLite + AI
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         CHART.JS
+    ================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+
+
+    <!-- =================================================
+         OUR JAVASCRIPT
+    ================================================== -->
+
+    <script
+       <script src="/frontend/script.js?v=2"></script>
+
+
+</body>
+
+</html>
